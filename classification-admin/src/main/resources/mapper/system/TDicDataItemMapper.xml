@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.TDicDataItemMapper">
+    
+    <resultMap type="TDicDataItem" id="TDicDataItemResult">
+        <result property="dataItemId"    column="data_item_id"    />
+        <result property="dataItemNo"    column="data_item_no"    />
+        <result property="infoBigClass"    column="info_big_class"    />
+        <result property="infoSmallClass"    column="info_small_class"    />
+        <result property="dataItemClass"    column="data_item_class"    />
+        <result property="nameCn"    column="name_cn"    />
+        <result property="nameEn"    column="name_en"    />
+        <result property="nameEns"    column="name_ens"    />
+        <result property="busiMeaning"    column="busi_meaning"    />
+        <result property="busiValScope"    column="busi_val_scope"    />
+        <result property="busiRule"    column="busi_rule"    />
+        <result property="busiScene"    column="busi_scene"    />
+        <result property="busiDimension"    column="busi_dimension"    />
+        <result property="clangNameRule"    column="clang_name_rule"    />
+        <result property="javaNameRule"    column="java_name_rule"    />
+        <result property="busiSource"    column="busi_source"    />
+        <result property="busiStdNo"    column="busi_std_no"    />
+        <result property="techDomainNo"    column="tech_domain_no"    />
+        <result property="differHash"    column="differ_hash"    />
+        <result property="domainId"    column="domain_id"    />
+        <result property="regSys"    column="reg_sys"    />
+        <result property="source"    column="source"    />
+        <result property="remark"    column="remark"    />
+        <result property="clsWordCheckFlagCd"    column="cls_word_check_flag_cd"    />
+        <result property="auditor"    column="auditor"    />
+        <result property="domainDifferHash"    column="domain_differ_hash"    />
+        <result property="codeDifferHash"    column="code_differ_hash"    />
+        <result property="contacter"    column="contacter"    />
+        <result property="contTel"    column="cont_tel"    />
+        <result property="verIdNo"    column="ver_id_no"    />
+        <result property="innerVerNo"    column="inner_ver_no"    />
+        <result property="operator"    column="operator"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updTime"    column="upd_time"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="regSysNo"    column="reg_sys_no"    />
+        <result property="regProj"    column="reg_proj"    />
+        <result property="regProjNo"    column="reg_proj_no"    />
+        <result property="reason"    column="reason"    />
+        <result property="operatorId"    column="operator_id"    />
+        <result property="auditorId"    column="auditor_id"    />
+        <result property="contacterId"    column="contacter_id"    />
+        <result property="applicant"    column="applicant"    />
+        <result property="applicantId"    column="applicant_id"    />
+        <result property="inputChannel"    column="input_channel"    />
+        <result property="modContentDesc"    column="mod_content_desc"    />
+        <result property="suggNameCn"    column="sugg_name_cn"    />
+        <result property="staCd"    column="sta_cd"    />
+        <result property="infoSmallClassId"    column="info_small_class_id"    />
+        <result property="sourceId"    column="source_id"    />
+        <result property="recFlag"    column="rec_flag"    />
+        <result property="checkExceptionFlag"    column="check_exception_flag"    />
+        <result property="checkState"    column="check_state"    />
+        <result property="dtqRuleNo"    column="dtq_rule_no"    />
+        <result property="elementId"    column="element_id"    />
+        <result property="modelId"    column="model_id"    />
+        <result property="dataSafeClsNo"    column="data_safe_cls_no"    />
+        <result property="dataSafeLvl1Cls"    column="data_safe_lvl1_cls"    />
+        <result property="dataSafeLvl2Cls"    column="data_safe_lvl2_cls"    />
+        <result property="dataSafeLvl3Cls"    column="data_safe_lvl3_cls"    />
+        <result property="dataSafeLvl4Cls"    column="data_safe_lvl4_cls"    />
+        <result property="dataSafeLvl"    column="data_safe_lvl"    />
+        <result property="safeInfoSrcSys"    column="safe_info_src_sys"    />
+        <result property="safeInfoRemark"    column="safe_info_remark"    />
+        <result property="checkVersion"    column="check_version"    />
+        <result property="checkMsg"    column="check_msg"    />
+    </resultMap>
+
+    <sql id="selectTDicDataItemVo">
+        select data_item_id, data_item_no, info_big_class, info_small_class, data_item_class, name_cn, name_en, name_ens, busi_meaning, busi_val_scope, busi_rule, busi_scene, busi_dimension, clang_name_rule, java_name_rule, busi_source, busi_std_no, tech_domain_no, differ_hash, domain_id, reg_sys, source, remark, cls_word_check_flag_cd, auditor, domain_differ_hash, code_differ_hash, contacter, cont_tel, ver_id_no, inner_ver_no, operator, create_time, upd_time, del_flag, reg_sys_no, reg_proj, reg_proj_no, reason, operator_id, auditor_id, contacter_id, applicant, applicant_id, input_channel, mod_content_desc, sugg_name_cn, sta_cd, info_small_class_id, source_id, rec_flag, check_exception_flag, check_state, dtq_rule_no, element_id, model_id, data_safe_cls_no, data_safe_lvl1_cls, data_safe_lvl2_cls, data_safe_lvl3_cls, data_safe_lvl4_cls, data_safe_lvl, safe_info_src_sys, safe_info_remark, check_version, check_msg from t_dic_data_item
+    </sql>
+
+    <select id="selectDataItemId" resultType="java.lang.String">
+        SELECT data_item_id from t_dic_data_item GROUP BY data_item_id
+    </select>
+
+    <select id="selectAll2" resultType="com.psbc.dams.classification.web.domain.SummaryData">
+        SELECT
+        name_cn as fieldChinese,
+        name_en as fieldEnglish,
+        busi_meaning as fieldMean
+        FROM
+        t_dic_data_item
+        WHERE
+        data_item_id IN
+        <foreach collection="list" open="(" separator=","  close=")" item="data" index="index">
+            #{data}
+        </foreach>
+    </select>
+
+
+    <select id="selectAll"  parameterType="Integer" resultMap="TDicDataItemResult" resultSetType="FORWARD_ONLY" fetchSize="10000">
+        <include refid="selectTDicDataItemVo"/> limit 500000 offset #{begin}
+    </select>
+
+    <select id="selectTDicDataItemList" parameterType="com.psbc.dams.classification.web.domain.TDicDataItem" resultMap="TDicDataItemResult">
+        <include refid="selectTDicDataItemVo"/>
+        <where>  
+            <if test="dataItemId != null  and dataItemId != ''"> and data_item_id = #{dataItemId}</if>
+            <if test="dataItemNo != null  and dataItemNo != ''"> and data_item_no = #{dataItemNo}</if>
+            <if test="infoBigClass != null  and infoBigClass != ''"> and info_big_class = #{infoBigClass}</if>
+            <if test="infoSmallClass != null  and infoSmallClass != ''"> and info_small_class = #{infoSmallClass}</if>
+            <if test="dataItemClass != null  and dataItemClass != ''"> and data_item_class = #{dataItemClass}</if>
+            <if test="nameCn != null  and nameCn != ''"> and name_cn = #{nameCn}</if>
+            <if test="nameEn != null  and nameEn != ''"> and name_en = #{nameEn}</if>
+            <if test="nameEns != null  and nameEns != ''"> and name_ens = #{nameEns}</if>
+            <if test="busiMeaning != null  and busiMeaning != ''"> and busi_meaning = #{busiMeaning}</if>
+            <if test="busiValScope != null  and busiValScope != ''"> and busi_val_scope = #{busiValScope}</if>
+            <if test="busiRule != null  and busiRule != ''"> and busi_rule = #{busiRule}</if>
+            <if test="busiScene != null  and busiScene != ''"> and busi_scene = #{busiScene}</if>
+            <if test="busiDimension != null  and busiDimension != ''"> and busi_dimension = #{busiDimension}</if>
+            <if test="clangNameRule != null  and clangNameRule != ''"> and clang_name_rule = #{clangNameRule}</if>
+            <if test="javaNameRule != null  and javaNameRule != ''"> and java_name_rule = #{javaNameRule}</if>
+            <if test="busiSource != null  and busiSource != ''"> and busi_source = #{busiSource}</if>
+            <if test="busiStdNo != null  and busiStdNo != ''"> and busi_std_no = #{busiStdNo}</if>
+            <if test="techDomainNo != null  and techDomainNo != ''"> and tech_domain_no = #{techDomainNo}</if>
+            <if test="differHash != null  and differHash != ''"> and differ_hash = #{differHash}</if>
+            <if test="domainId != null  and domainId != ''"> and domain_id = #{domainId}</if>
+            <if test="regSys != null  and regSys != ''"> and reg_sys = #{regSys}</if>
+            <if test="source != null  and source != ''"> and source = #{source}</if>
+            <if test="clsWordCheckFlagCd != null  and clsWordCheckFlagCd != ''"> and cls_word_check_flag_cd = #{clsWordCheckFlagCd}</if>
+            <if test="auditor != null  and auditor != ''"> and auditor = #{auditor}</if>
+            <if test="domainDifferHash != null  and domainDifferHash != ''"> and domain_differ_hash = #{domainDifferHash}</if>
+            <if test="codeDifferHash != null  and codeDifferHash != ''"> and code_differ_hash = #{codeDifferHash}</if>
+            <if test="contacter != null  and contacter != ''"> and contacter = #{contacter}</if>
+            <if test="contTel != null  and contTel != ''"> and cont_tel = #{contTel}</if>
+            <if test="verIdNo != null  and verIdNo != ''"> and ver_id_no = #{verIdNo}</if>
+            <if test="innerVerNo != null  and innerVerNo != ''"> and inner_ver_no = #{innerVerNo}</if>
+            <if test="operator != null  and operator != ''"> and operator = #{operator}</if>
+            <if test="updTime != null "> and upd_time = #{updTime}</if>
+            <if test="regSysNo != null  and regSysNo != ''"> and reg_sys_no = #{regSysNo}</if>
+            <if test="regProj != null  and regProj != ''"> and reg_proj = #{regProj}</if>
+            <if test="regProjNo != null  and regProjNo != ''"> and reg_proj_no = #{regProjNo}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+            <if test="operatorId != null  and operatorId != ''"> and operator_id = #{operatorId}</if>
+            <if test="auditorId != null  and auditorId != ''"> and auditor_id = #{auditorId}</if>
+            <if test="contacterId != null  and contacterId != ''"> and contacter_id = #{contacterId}</if>
+            <if test="applicant != null  and applicant != ''"> and applicant = #{applicant}</if>
+            <if test="applicantId != null  and applicantId != ''"> and applicant_id = #{applicantId}</if>
+            <if test="inputChannel != null  and inputChannel != ''"> and input_channel = #{inputChannel}</if>
+            <if test="modContentDesc != null  and modContentDesc != ''"> and mod_content_desc = #{modContentDesc}</if>
+            <if test="suggNameCn != null  and suggNameCn != ''"> and sugg_name_cn = #{suggNameCn}</if>
+            <if test="staCd != null  and staCd != ''"> and sta_cd = #{staCd}</if>
+            <if test="infoSmallClassId != null  and infoSmallClassId != ''"> and info_small_class_id = #{infoSmallClassId}</if>
+            <if test="sourceId != null  and sourceId != ''"> and source_id = #{sourceId}</if>
+            <if test="recFlag != null  and recFlag != ''"> and rec_flag = #{recFlag}</if>
+            <if test="checkExceptionFlag != null  and checkExceptionFlag != ''"> and check_exception_flag = #{checkExceptionFlag}</if>
+            <if test="checkState != null  and checkState != ''"> and check_state = #{checkState}</if>
+            <if test="dtqRuleNo != null  and dtqRuleNo != ''"> and dtq_rule_no = #{dtqRuleNo}</if>
+            <if test="elementId != null  and elementId != ''"> and element_id = #{elementId}</if>
+            <if test="modelId != null  and modelId != ''"> and model_id = #{modelId}</if>
+            <if test="dataSafeClsNo != null  and dataSafeClsNo != ''"> and data_safe_cls_no = #{dataSafeClsNo}</if>
+            <if test="dataSafeLvl1Cls != null  and dataSafeLvl1Cls != ''"> and data_safe_lvl1_cls = #{dataSafeLvl1Cls}</if>
+            <if test="dataSafeLvl2Cls != null  and dataSafeLvl2Cls != ''"> and data_safe_lvl2_cls = #{dataSafeLvl2Cls}</if>
+            <if test="dataSafeLvl3Cls != null  and dataSafeLvl3Cls != ''"> and data_safe_lvl3_cls = #{dataSafeLvl3Cls}</if>
+            <if test="dataSafeLvl4Cls != null  and dataSafeLvl4Cls != ''"> and data_safe_lvl4_cls = #{dataSafeLvl4Cls}</if>
+            <if test="dataSafeLvl != null  and dataSafeLvl != ''"> and data_safe_lvl = #{dataSafeLvl}</if>
+            <if test="safeInfoSrcSys != null  and safeInfoSrcSys != ''"> and safe_info_src_sys = #{safeInfoSrcSys}</if>
+            <if test="safeInfoRemark != null  and safeInfoRemark != ''"> and safe_info_remark = #{safeInfoRemark}</if>
+            <if test="checkVersion != null  and checkVersion != ''"> and check_version = #{checkVersion}</if>
+            <if test="checkMsg != null  and checkMsg != ''"> and check_msg = #{checkMsg}</if>
+        </where>
+    </select>
+    
+    <select id="selectTDicDataItemByDataItemId" parameterType="String" resultMap="TDicDataItemResult">
+        <include refid="selectTDicDataItemVo"/>
+        where data_item_id = #{dataItemId}
+    </select>
+        
+    <insert id="insertTDicDataItem" parameterType="com.psbc.dams.classification.web.domain.TDicDataItem">
+        insert into t_dic_data_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dataItemId != null">data_item_id,</if>
+            <if test="dataItemNo != null">data_item_no,</if>
+            <if test="infoBigClass != null">info_big_class,</if>
+            <if test="infoSmallClass != null">info_small_class,</if>
+            <if test="dataItemClass != null">data_item_class,</if>
+            <if test="nameCn != null">name_cn,</if>
+            <if test="nameEn != null">name_en,</if>
+            <if test="nameEns != null">name_ens,</if>
+            <if test="busiMeaning != null">busi_meaning,</if>
+            <if test="busiValScope != null">busi_val_scope,</if>
+            <if test="busiRule != null">busi_rule,</if>
+            <if test="busiScene != null">busi_scene,</if>
+            <if test="busiDimension != null">busi_dimension,</if>
+            <if test="clangNameRule != null">clang_name_rule,</if>
+            <if test="javaNameRule != null">java_name_rule,</if>
+            <if test="busiSource != null">busi_source,</if>
+            <if test="busiStdNo != null">busi_std_no,</if>
+            <if test="techDomainNo != null">tech_domain_no,</if>
+            <if test="differHash != null">differ_hash,</if>
+            <if test="domainId != null">domain_id,</if>
+            <if test="regSys != null">reg_sys,</if>
+            <if test="source != null">source,</if>
+            <if test="remark != null">remark,</if>
+            <if test="clsWordCheckFlagCd != null">cls_word_check_flag_cd,</if>
+            <if test="auditor != null">auditor,</if>
+            <if test="domainDifferHash != null">domain_differ_hash,</if>
+            <if test="codeDifferHash != null">code_differ_hash,</if>
+            <if test="contacter != null">contacter,</if>
+            <if test="contTel != null">cont_tel,</if>
+            <if test="verIdNo != null">ver_id_no,</if>
+            <if test="innerVerNo != null">inner_ver_no,</if>
+            <if test="operator != null">operator,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updTime != null">upd_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="regSysNo != null">reg_sys_no,</if>
+            <if test="regProj != null">reg_proj,</if>
+            <if test="regProjNo != null">reg_proj_no,</if>
+            <if test="reason != null">reason,</if>
+            <if test="operatorId != null">operator_id,</if>
+            <if test="auditorId != null">auditor_id,</if>
+            <if test="contacterId != null">contacter_id,</if>
+            <if test="applicant != null">applicant,</if>
+            <if test="applicantId != null">applicant_id,</if>
+            <if test="inputChannel != null">input_channel,</if>
+            <if test="modContentDesc != null">mod_content_desc,</if>
+            <if test="suggNameCn != null">sugg_name_cn,</if>
+            <if test="staCd != null">sta_cd,</if>
+            <if test="infoSmallClassId != null">info_small_class_id,</if>
+            <if test="sourceId != null">source_id,</if>
+            <if test="recFlag != null">rec_flag,</if>
+            <if test="checkExceptionFlag != null">check_exception_flag,</if>
+            <if test="checkState != null">check_state,</if>
+            <if test="dtqRuleNo != null">dtq_rule_no,</if>
+            <if test="elementId != null">element_id,</if>
+            <if test="modelId != null">model_id,</if>
+            <if test="dataSafeClsNo != null">data_safe_cls_no,</if>
+            <if test="dataSafeLvl1Cls != null">data_safe_lvl1_cls,</if>
+            <if test="dataSafeLvl2Cls != null">data_safe_lvl2_cls,</if>
+            <if test="dataSafeLvl3Cls != null">data_safe_lvl3_cls,</if>
+            <if test="dataSafeLvl4Cls != null">data_safe_lvl4_cls,</if>
+            <if test="dataSafeLvl != null">data_safe_lvl,</if>
+            <if test="safeInfoSrcSys != null">safe_info_src_sys,</if>
+            <if test="safeInfoRemark != null">safe_info_remark,</if>
+            <if test="checkVersion != null">check_version,</if>
+            <if test="checkMsg != null">check_msg,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dataItemId != null">#{dataItemId},</if>
+            <if test="dataItemNo != null">#{dataItemNo},</if>
+            <if test="infoBigClass != null">#{infoBigClass},</if>
+            <if test="infoSmallClass != null">#{infoSmallClass},</if>
+            <if test="dataItemClass != null">#{dataItemClass},</if>
+            <if test="nameCn != null">#{nameCn},</if>
+            <if test="nameEn != null">#{nameEn},</if>
+            <if test="nameEns != null">#{nameEns},</if>
+            <if test="busiMeaning != null">#{busiMeaning},</if>
+            <if test="busiValScope != null">#{busiValScope},</if>
+            <if test="busiRule != null">#{busiRule},</if>
+            <if test="busiScene != null">#{busiScene},</if>
+            <if test="busiDimension != null">#{busiDimension},</if>
+            <if test="clangNameRule != null">#{clangNameRule},</if>
+            <if test="javaNameRule != null">#{javaNameRule},</if>
+            <if test="busiSource != null">#{busiSource},</if>
+            <if test="busiStdNo != null">#{busiStdNo},</if>
+            <if test="techDomainNo != null">#{techDomainNo},</if>
+            <if test="differHash != null">#{differHash},</if>
+            <if test="domainId != null">#{domainId},</if>
+            <if test="regSys != null">#{regSys},</if>
+            <if test="source != null">#{source},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="clsWordCheckFlagCd != null">#{clsWordCheckFlagCd},</if>
+            <if test="auditor != null">#{auditor},</if>
+            <if test="domainDifferHash != null">#{domainDifferHash},</if>
+            <if test="codeDifferHash != null">#{codeDifferHash},</if>
+            <if test="contacter != null">#{contacter},</if>
+            <if test="contTel != null">#{contTel},</if>
+            <if test="verIdNo != null">#{verIdNo},</if>
+            <if test="innerVerNo != null">#{innerVerNo},</if>
+            <if test="operator != null">#{operator},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updTime != null">#{updTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="regSysNo != null">#{regSysNo},</if>
+            <if test="regProj != null">#{regProj},</if>
+            <if test="regProjNo != null">#{regProjNo},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="operatorId != null">#{operatorId},</if>
+            <if test="auditorId != null">#{auditorId},</if>
+            <if test="contacterId != null">#{contacterId},</if>
+            <if test="applicant != null">#{applicant},</if>
+            <if test="applicantId != null">#{applicantId},</if>
+            <if test="inputChannel != null">#{inputChannel},</if>
+            <if test="modContentDesc != null">#{modContentDesc},</if>
+            <if test="suggNameCn != null">#{suggNameCn},</if>
+            <if test="staCd != null">#{staCd},</if>
+            <if test="infoSmallClassId != null">#{infoSmallClassId},</if>
+            <if test="sourceId != null">#{sourceId},</if>
+            <if test="recFlag != null">#{recFlag},</if>
+            <if test="checkExceptionFlag != null">#{checkExceptionFlag},</if>
+            <if test="checkState != null">#{checkState},</if>
+            <if test="dtqRuleNo != null">#{dtqRuleNo},</if>
+            <if test="elementId != null">#{elementId},</if>
+            <if test="modelId != null">#{modelId},</if>
+            <if test="dataSafeClsNo != null">#{dataSafeClsNo},</if>
+            <if test="dataSafeLvl1Cls != null">#{dataSafeLvl1Cls},</if>
+            <if test="dataSafeLvl2Cls != null">#{dataSafeLvl2Cls},</if>
+            <if test="dataSafeLvl3Cls != null">#{dataSafeLvl3Cls},</if>
+            <if test="dataSafeLvl4Cls != null">#{dataSafeLvl4Cls},</if>
+            <if test="dataSafeLvl != null">#{dataSafeLvl},</if>
+            <if test="safeInfoSrcSys != null">#{safeInfoSrcSys},</if>
+            <if test="safeInfoRemark != null">#{safeInfoRemark},</if>
+            <if test="checkVersion != null">#{checkVersion},</if>
+            <if test="checkMsg != null">#{checkMsg},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTDicDataItem" parameterType="com.psbc.dams.classification.web.domain.TDicDataItem">
+        update t_dic_data_item
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="dataItemNo != null">data_item_no = #{dataItemNo},</if>
+            <if test="infoBigClass != null">info_big_class = #{infoBigClass},</if>
+            <if test="infoSmallClass != null">info_small_class = #{infoSmallClass},</if>
+            <if test="dataItemClass != null">data_item_class = #{dataItemClass},</if>
+            <if test="nameCn != null">name_cn = #{nameCn},</if>
+            <if test="nameEn != null">name_en = #{nameEn},</if>
+            <if test="nameEns != null">name_ens = #{nameEns},</if>
+            <if test="busiMeaning != null">busi_meaning = #{busiMeaning},</if>
+            <if test="busiValScope != null">busi_val_scope = #{busiValScope},</if>
+            <if test="busiRule != null">busi_rule = #{busiRule},</if>
+            <if test="busiScene != null">busi_scene = #{busiScene},</if>
+            <if test="busiDimension != null">busi_dimension = #{busiDimension},</if>
+            <if test="clangNameRule != null">clang_name_rule = #{clangNameRule},</if>
+            <if test="javaNameRule != null">java_name_rule = #{javaNameRule},</if>
+            <if test="busiSource != null">busi_source = #{busiSource},</if>
+            <if test="busiStdNo != null">busi_std_no = #{busiStdNo},</if>
+            <if test="techDomainNo != null">tech_domain_no = #{techDomainNo},</if>
+            <if test="differHash != null">differ_hash = #{differHash},</if>
+            <if test="domainId != null">domain_id = #{domainId},</if>
+            <if test="regSys != null">reg_sys = #{regSys},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="clsWordCheckFlagCd != null">cls_word_check_flag_cd = #{clsWordCheckFlagCd},</if>
+            <if test="auditor != null">auditor = #{auditor},</if>
+            <if test="domainDifferHash != null">domain_differ_hash = #{domainDifferHash},</if>
+            <if test="codeDifferHash != null">code_differ_hash = #{codeDifferHash},</if>
+            <if test="contacter != null">contacter = #{contacter},</if>
+            <if test="contTel != null">cont_tel = #{contTel},</if>
+            <if test="verIdNo != null">ver_id_no = #{verIdNo},</if>
+            <if test="innerVerNo != null">inner_ver_no = #{innerVerNo},</if>
+            <if test="operator != null">operator = #{operator},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updTime != null">upd_time = #{updTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="regSysNo != null">reg_sys_no = #{regSysNo},</if>
+            <if test="regProj != null">reg_proj = #{regProj},</if>
+            <if test="regProjNo != null">reg_proj_no = #{regProjNo},</if>
+            <if test="reason != null">reason = #{reason},</if>
+            <if test="operatorId != null">operator_id = #{operatorId},</if>
+            <if test="auditorId != null">auditor_id = #{auditorId},</if>
+            <if test="contacterId != null">contacter_id = #{contacterId},</if>
+            <if test="applicant != null">applicant = #{applicant},</if>
+            <if test="applicantId != null">applicant_id = #{applicantId},</if>
+            <if test="inputChannel != null">input_channel = #{inputChannel},</if>
+            <if test="modContentDesc != null">mod_content_desc = #{modContentDesc},</if>
+            <if test="suggNameCn != null">sugg_name_cn = #{suggNameCn},</if>
+            <if test="staCd != null">sta_cd = #{staCd},</if>
+            <if test="infoSmallClassId != null">info_small_class_id = #{infoSmallClassId},</if>
+            <if test="sourceId != null">source_id = #{sourceId},</if>
+            <if test="recFlag != null">rec_flag = #{recFlag},</if>
+            <if test="checkExceptionFlag != null">check_exception_flag = #{checkExceptionFlag},</if>
+            <if test="checkState != null">check_state = #{checkState},</if>
+            <if test="dtqRuleNo != null">dtq_rule_no = #{dtqRuleNo},</if>
+            <if test="elementId != null">element_id = #{elementId},</if>
+            <if test="modelId != null">model_id = #{modelId},</if>
+            <if test="dataSafeClsNo != null">data_safe_cls_no = #{dataSafeClsNo},</if>
+            <if test="dataSafeLvl1Cls != null">data_safe_lvl1_cls = #{dataSafeLvl1Cls},</if>
+            <if test="dataSafeLvl2Cls != null">data_safe_lvl2_cls = #{dataSafeLvl2Cls},</if>
+            <if test="dataSafeLvl3Cls != null">data_safe_lvl3_cls = #{dataSafeLvl3Cls},</if>
+            <if test="dataSafeLvl4Cls != null">data_safe_lvl4_cls = #{dataSafeLvl4Cls},</if>
+            <if test="dataSafeLvl != null">data_safe_lvl = #{dataSafeLvl},</if>
+            <if test="safeInfoSrcSys != null">safe_info_src_sys = #{safeInfoSrcSys},</if>
+            <if test="safeInfoRemark != null">safe_info_remark = #{safeInfoRemark},</if>
+            <if test="checkVersion != null">check_version = #{checkVersion},</if>
+            <if test="checkMsg != null">check_msg = #{checkMsg},</if>
+        </trim>
+        where data_item_id = #{dataItemId}
+    </update>
+
+    <delete id="deleteTDicDataItemByDataItemId" parameterType="String">
+        delete from t_dic_data_item where data_item_id = #{dataItemId}
+    </delete>
+
+    <delete id="deleteTDicDataItemByDataItemIds" parameterType="String">
+        delete from t_dic_data_item where data_item_id in 
+        <foreach item="dataItemId" collection="array" open="(" separator="," close=")">
+            #{dataItemId}
+        </foreach>
+    </delete>
+
+</mapper>

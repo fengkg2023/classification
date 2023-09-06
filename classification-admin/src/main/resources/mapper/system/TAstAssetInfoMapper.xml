@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.TAstAssetInfoMapper">
+    
+    <resultMap type="TAstAssetInfo" id="TAstAssetInfoResult">
+        <result property="assetNo"    column="asset_no"    />
+        <result property="assetBcls"    column="asset_bcls"    />
+        <result property="assetSclass"    column="asset_sclass"    />
+        <result property="sysInfo"    column="sys_info"    />
+        <result property="environInfo"    column="environ_info"    />
+        <result property="schemaInfo"    column="schema_info"    />
+        <result property="tabInfo"    column="tab_info"    />
+        <result property="relDataInfo"    column="rel_data_info"    />
+        <result property="assetName"    column="asset_name"    />
+        <result property="assetEnName"    column="asset_en_name"    />
+        <result property="assetDesc"    column="asset_desc"    />
+        <result property="assetSta"    column="asset_sta"    />
+        <result property="assetDirLoc"    column="asset_dir_loc"    />
+        <result property="assetBusiDept"    column="asset_busi_dept"    />
+        <result property="busiConter"    column="busi_conter"    />
+        <result property="sysCstndept"    column="sys_cstndept"    />
+        <result property="techConter"    column="tech_conter"    />
+        <result property="dataSafeLvl"    column="data_safe_lvl"    />
+        <result property="ltmUpdTime"    column="ltm_upd_time"    />
+        <result property="issuTime"    column="issu_time"    />
+        <result property="offlnTime"    column="offln_time"    />
+        <result property="verNo"    column="ver_no"    />
+        <result property="qualityScore"    column="quality_score"    />
+        <result property="valLvl"    column="val_lvl"    />
+        <result property="hotScore"    column="hot_score"    />
+        <result property="visitNum"    column="visit_num"    />
+        <result property="commentNum"    column="comment_num"    />
+        <result property="likeNum"    column="like_num"    />
+        <result property="labelCnt"    column="label_cnt"    />
+        <result property="collectNum"    column="collect_num"    />
+        <result property="quoteNum"    column="quote_num"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createUserId"    column="create_user_id"    />
+        <result property="directUpstr"    column="direct_upstr"    />
+        <result property="sectionCls"    column="section_cls"    />
+        <result property="appDomain"    column="app_domain"    />
+        <result property="appScene"    column="app_scene"    />
+        <result property="assetServMode"    column="asset_serv_mode"    />
+        <result property="updCycle"    column="upd_cycle"    />
+        <result property="relatDownstr"    column="relat_downstr"    />
+        <result property="openShareScope"    column="open_share_scope"    />
+        <result property="rolloutDt"    column="rollout_dt"    />
+        <result property="dataSafeClsNo"    column="data_safe_cls_no"    />
+        <result property="hotScoreNum"    column="hot_score_num"    />
+    </resultMap>
+
+    <sql id="selectTAstAssetInfoVo">
+        select asset_no, asset_bcls, asset_sclass, sys_info, environ_info, schema_info, tab_info, rel_data_info, asset_name, asset_en_name, asset_desc, asset_sta, asset_dir_loc, asset_busi_dept, busi_conter, sys_cstndept, tech_conter, data_safe_lvl, ltm_upd_time, issu_time, offln_time, ver_no, quality_score, val_lvl, hot_score, visit_num, comment_num, like_num, label_cnt, collect_num, quote_num, create_time, create_user_id, direct_upstr, section_cls, app_domain, app_scene, asset_serv_mode, upd_cycle, relat_downstr, open_share_scope, rollout_dt, data_safe_cls_no, hot_score_num from t_ast_asset_info
+    </sql>
+
+    <select id="selectTAstAssetInfoList" parameterType="com.psbc.dams.classification.web.domain.TAstAssetInfo" resultMap="TAstAssetInfoResult">
+        <include refid="selectTAstAssetInfoVo"/>
+        <where>  
+            <if test="assetNo != null  and assetNo != ''"> and asset_no = #{assetNo}</if>
+            <if test="assetBcls != null  and assetBcls != ''"> and asset_bcls = #{assetBcls}</if>
+            <if test="assetSclass != null  and assetSclass != ''"> and asset_sclass = #{assetSclass}</if>
+            <if test="sysInfo != null  and sysInfo != ''"> and sys_info = #{sysInfo}</if>
+            <if test="environInfo != null  and environInfo != ''"> and environ_info = #{environInfo}</if>
+            <if test="schemaInfo != null  and schemaInfo != ''"> and schema_info = #{schemaInfo}</if>
+            <if test="tabInfo != null  and tabInfo != ''"> and tab_info = #{tabInfo}</if>
+            <if test="relDataInfo != null  and relDataInfo != ''"> and rel_data_info = #{relDataInfo}</if>
+            <if test="assetName != null  and assetName != ''"> and asset_name like concat('%', #{assetName}, '%')</if>
+            <if test="assetEnName != null  and assetEnName != ''"> and asset_en_name like concat('%', #{assetEnName}, '%')</if>
+            <if test="assetDesc != null  and assetDesc != ''"> and asset_desc = #{assetDesc}</if>
+            <if test="assetSta != null  and assetSta != ''"> and asset_sta = #{assetSta}</if>
+            <if test="assetDirLoc != null  and assetDirLoc != ''"> and asset_dir_loc = #{assetDirLoc}</if>
+            <if test="assetBusiDept != null  and assetBusiDept != ''"> and asset_busi_dept = #{assetBusiDept}</if>
+            <if test="busiConter != null  and busiConter != ''"> and busi_conter = #{busiConter}</if>
+            <if test="sysCstndept != null  and sysCstndept != ''"> and sys_cstndept = #{sysCstndept}</if>
+            <if test="techConter != null  and techConter != ''"> and tech_conter = #{techConter}</if>
+            <if test="dataSafeLvl != null  and dataSafeLvl != ''"> and data_safe_lvl = #{dataSafeLvl}</if>
+            <if test="ltmUpdTime != null "> and ltm_upd_time = #{ltmUpdTime}</if>
+            <if test="issuTime != null "> and issu_time = #{issuTime}</if>
+            <if test="offlnTime != null "> and offln_time = #{offlnTime}</if>
+            <if test="verNo != null  and verNo != ''"> and ver_no = #{verNo}</if>
+            <if test="qualityScore != null  and qualityScore != ''"> and quality_score = #{qualityScore}</if>
+            <if test="valLvl != null  and valLvl != ''"> and val_lvl = #{valLvl}</if>
+            <if test="hotScore != null  and hotScore != ''"> and hot_score = #{hotScore}</if>
+            <if test="visitNum != null  and visitNum != ''"> and visit_num = #{visitNum}</if>
+            <if test="commentNum != null  and commentNum != ''"> and comment_num = #{commentNum}</if>
+            <if test="likeNum != null  and likeNum != ''"> and like_num = #{likeNum}</if>
+            <if test="labelCnt != null  and labelCnt != ''"> and label_cnt = #{labelCnt}</if>
+            <if test="collectNum != null  and collectNum != ''"> and collect_num = #{collectNum}</if>
+            <if test="quoteNum != null  and quoteNum != ''"> and quote_num = #{quoteNum}</if>
+            <if test="createUserId != null  and createUserId != ''"> and create_user_id = #{createUserId}</if>
+            <if test="directUpstr != null  and directUpstr != ''"> and direct_upstr = #{directUpstr}</if>
+            <if test="sectionCls != null  and sectionCls != ''"> and section_cls = #{sectionCls}</if>
+            <if test="appDomain != null  and appDomain != ''"> and app_domain = #{appDomain}</if>
+            <if test="appScene != null  and appScene != ''"> and app_scene = #{appScene}</if>
+            <if test="assetServMode != null  and assetServMode != ''"> and asset_serv_mode = #{assetServMode}</if>
+            <if test="updCycle != null  and updCycle != ''"> and upd_cycle = #{updCycle}</if>
+            <if test="relatDownstr != null  and relatDownstr != ''"> and relat_downstr = #{relatDownstr}</if>
+            <if test="openShareScope != null  and openShareScope != ''"> and open_share_scope = #{openShareScope}</if>
+            <if test="rolloutDt != null "> and rollout_dt = #{rolloutDt}</if>
+            <if test="dataSafeClsNo != null  and dataSafeClsNo != ''"> and data_safe_cls_no = #{dataSafeClsNo}</if>
+            <if test="hotScoreNum != null  and hotScoreNum != ''"> and hot_score_num = #{hotScoreNum}</if>
+        </where>
+    </select>
+    
+    <select id="selectTAstAssetInfoByAssetNo" parameterType="String" resultMap="TAstAssetInfoResult">
+        <include refid="selectTAstAssetInfoVo"/>
+    </select>
+
+    <select id="selectAssetNo" resultType="java.lang.String">
+        select asset_no FROM t_ast_asset_info group by asset_no
+    </select>
+
+    <select id="selectAll2" resultType="com.psbc.dams.classification.web.domain.SummaryData">
+        SELECT
+        schema_info as databaseEnglish,
+        tab_info as tableEnglish,
+        asset_name as fieldChinese,
+        asset_en_name as fieldEnglish,
+        asset_desc as fieldMean,
+        asset_busi_dept as businessUnit
+        FROM
+        t_ast_asset_info
+        WHERE
+        asset_no IN
+        <foreach collection="list" open="(" separator=","  close=")" item="data" index="index">
+            #{data}
+        </foreach>
+    </select>
+        
+    <insert id="insertTAstAssetInfo">
+        insert into t_ast_asset_info_test values
+        <foreach item="data" collection="list" separator=",">
+            (
+            #{data.assetNo},
+            #{data.assetBcls},
+            #{data.assetSclass},
+            #{data.sysInfo},
+            #{data.environInfo},
+            #{data.schemaInfo},
+            #{data.tabInfo},
+            #{data.relDataInfo},
+            #{data.assetName},
+            #{data.assetEnName},
+            #{data.assetDesc},
+            #{data.assetSta},
+            #{data.assetDirLoc},
+            #{data.assetBusiDept},
+            #{data.busiConter},
+            #{data.sysCstndept},
+            #{data.techConter},
+            #{data.dataSafeLvl},
+            #{data.ltmUpdTime},
+            #{data.issuTime},
+            #{data.offlnTime},
+            #{data.verNo},
+            #{data.qualityScore},
+            #{data.valLvl},
+            #{data.hotScore},
+            #{data.visitNum},
+            #{data.commentNum},
+            #{data.likeNum},
+            #{data.labelCnt},
+            #{data.collectNum},
+            #{data.quoteNum},
+            #{data.createTime},
+            #{data.createUserId},
+            #{data.directUpstr},
+            #{data.sectionCls},
+            #{data.appDomain},
+            #{data.appScene},
+            #{data.assetServMode},
+            #{data.updCycle},
+            #{data.relatDownstr},
+            #{data.openShareScope},
+            #{data.rolloutDt},
+            #{data.dataSafeClsNo},
+            #{data.hotScoreNum}
+            )
+         </foreach>
+    </insert>
+
+    <update id="updateTAstAssetInfo" parameterType="com.psbc.dams.classification.web.domain.TAstAssetInfo">
+        update t_ast_asset_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="assetBcls != null">asset_bcls = #{assetBcls},</if>
+            <if test="assetSclass != null">asset_sclass = #{assetSclass},</if>
+            <if test="sysInfo != null">sys_info = #{sysInfo},</if>
+            <if test="environInfo != null">environ_info = #{environInfo},</if>
+            <if test="schemaInfo != null">schema_info = #{schemaInfo},</if>
+            <if test="tabInfo != null">tab_info = #{tabInfo},</if>
+            <if test="relDataInfo != null">rel_data_info = #{relDataInfo},</if>
+            <if test="assetName != null">asset_name = #{assetName},</if>
+            <if test="assetEnName != null">asset_en_name = #{assetEnName},</if>
+            <if test="assetDesc != null">asset_desc = #{assetDesc},</if>
+            <if test="assetSta != null">asset_sta = #{assetSta},</if>
+            <if test="assetDirLoc != null">asset_dir_loc = #{assetDirLoc},</if>
+            <if test="assetBusiDept != null">asset_busi_dept = #{assetBusiDept},</if>
+            <if test="busiConter != null">busi_conter = #{busiConter},</if>
+            <if test="sysCstndept != null">sys_cstndept = #{sysCstndept},</if>
+            <if test="techConter != null">tech_conter = #{techConter},</if>
+            <if test="dataSafeLvl != null">data_safe_lvl = #{dataSafeLvl},</if>
+            <if test="ltmUpdTime != null">ltm_upd_time = #{ltmUpdTime},</if>
+            <if test="issuTime != null">issu_time = #{issuTime},</if>
+            <if test="offlnTime != null">offln_time = #{offlnTime},</if>
+            <if test="verNo != null">ver_no = #{verNo},</if>
+            <if test="qualityScore != null">quality_score = #{qualityScore},</if>
+            <if test="valLvl != null">val_lvl = #{valLvl},</if>
+            <if test="hotScore != null">hot_score = #{hotScore},</if>
+            <if test="visitNum != null">visit_num = #{visitNum},</if>
+            <if test="commentNum != null">comment_num = #{commentNum},</if>
+            <if test="likeNum != null">like_num = #{likeNum},</if>
+            <if test="labelCnt != null">label_cnt = #{labelCnt},</if>
+            <if test="collectNum != null">collect_num = #{collectNum},</if>
+            <if test="quoteNum != null">quote_num = #{quoteNum},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="directUpstr != null">direct_upstr = #{directUpstr},</if>
+            <if test="sectionCls != null">section_cls = #{sectionCls},</if>
+            <if test="appDomain != null">app_domain = #{appDomain},</if>
+            <if test="appScene != null">app_scene = #{appScene},</if>
+            <if test="assetServMode != null">asset_serv_mode = #{assetServMode},</if>
+            <if test="updCycle != null">upd_cycle = #{updCycle},</if>
+            <if test="relatDownstr != null">relat_downstr = #{relatDownstr},</if>
+            <if test="openShareScope != null">open_share_scope = #{openShareScope},</if>
+            <if test="rolloutDt != null">rollout_dt = #{rolloutDt},</if>
+            <if test="dataSafeClsNo != null">data_safe_cls_no = #{dataSafeClsNo},</if>
+            <if test="hotScoreNum != null">hot_score_num = #{hotScoreNum},</if>
+        </trim>
+        where asset_no = #{assetNo}
+    </update>
+
+    <delete id="deleteTAstAssetInfoByAssetNo" parameterType="String">
+        delete from t_ast_asset_info where asset_no = #{assetNo}
+    </delete>
+
+    <delete id="deleteTAstAssetInfoByAssetNos" parameterType="String">
+        delete from t_ast_asset_info where asset_no in 
+        <foreach item="assetNo" collection="array" open="(" separator="," close=")">
+            #{assetNo}
+        </foreach>
+    </delete>
+
+    <select id="selectAll"  parameterType="Integer" resultMap="TAstAssetInfoResult" resultSetType="FORWARD_ONLY" fetchSize="10000">
+        <include refid="selectTAstAssetInfoVo"/> limit 500000 offset #{begin}
+    </select>
+
+</mapper>

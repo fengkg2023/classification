@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.SummaryDataCollectMapper">
+
+    <resultMap type="SummaryDataCollect" id="SummaryDataResult">
+        <result property="id"    column="id"    />
+        <result property="projectName"    column="project_name"    />
+        <result property="dataType"    column="data_type"    />
+        <result property="databaseEnglish"    column="database_english"    />
+        <result property="tableEnglish"    column="table_english"    />
+        <result property="tableChinese"    column="table_chinese"    />
+        <result property="fieldEnglish"    column="field_english"    />
+        <result property="fieldChinese"    column="field_chinese"    />
+        <result property="fieldMean"    column="field_mean"    />
+        <result property="enterpriseDataDictionary"    column="enterprise_data_dictionary"    />
+        <result property="result1"    column="result1"    />
+        <result property="result2"    column="result2"    />
+        <result property="result3"    column="result3"    />
+        <result property="result4"    column="result4"    />
+        <result property="resultLevel"    column="result_level"    />
+        <result property="businessUnit"    column="business_unit"    />
+        <result property="remark"    column="remark"    />
+        <result property="confirm"    column="confirm"    />
+        <result property="confirmor"    column="confirmor"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectSummaryDataVo">
+        select id, project_name, data_type, database_english, table_english, table_chinese, field_english, field_chinese, field_mean, enterprise_data_dictionary, result1, result2, result3, result4, result_level, business_unit, remark, confirm, confirmor from summary_data_collect
+    </sql>
+
+
+    <select id="selectAllByStatus" resultType="com.psbc.dams.classification.web.domain.SummaryData">
+        <include refid="selectSummaryDataVo"/> where status = '0'
+    </select>
+
+
+</mapper>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.TStdBaseDataMapper">
+    
+    <resultMap type="TStdBaseData" id="TStdBaseDataResult">
+        <result property="stdNo"    column="std_no"    />
+        <result property="topicNo"    column="topic_no"    />
+        <result property="blgCls1"    column="blg_cls1"    />
+        <result property="blgCls2"    column="blg_cls2"    />
+        <result property="blgCls3"    column="blg_cls3"    />
+        <result property="blgCls4"    column="blg_cls4"    />
+        <result property="blgCls5"    column="blg_cls5"    />
+        <result property="stdCnName"    column="std_cn_name"    />
+        <result property="stdEnName"    column="std_en_name"    />
+        <result property="stdDesc"    column="std_desc"    />
+        <result property="stdSta"    column="std_sta"    />
+        <result property="dataType"    column="data_type"    />
+        <result property="dataLen"    column="data_len"    />
+        <result property="dataFmt"    column="data_fmt"    />
+        <result property="dataDecimalBit"    column="data_decimal_bit"    />
+        <result property="busiMeaning"    column="busi_meaning"    />
+        <result property="busiMgrDept"    column="busi_mgr_dept"    />
+        <result property="assitDept"    column="assit_dept"    />
+        <result property="quotePubCd"    column="quote_pub_cd"    />
+        <result property="formuateAccord"    column="formuate_accord"    />
+        <result property="formuateAccordDesc"    column="formuate_accord_desc"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="bgnTime"    column="bgn_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="issuTime"    column="issu_time"    />
+        <result property="invalidTime"    column="invalid_time"    />
+        <result property="stdVerNo"    column="std_ver_no"    />
+        <result property="verNo"    column="ver_no"    />
+        <result property="stdAlias"    column="std_alias"    />
+        <result property="cdNoRule"    column="cd_no_rule"    />
+        <result property="accessTimes"    column="access_times"    />
+        <result property="chgReason"    column="chg_reason"    />
+        <result property="alshReason"    column="alsh_reason"    />
+        <result property="relateStd"    column="relate_std"    />
+        <result property="relateStdRelat"    column="relate_std_relat"    />
+    </resultMap>
+
+    <sql id="selectTStdBaseDataVo">
+        select std_no, topic_no, blg_cls1, blg_cls2, blg_cls3, blg_cls4, blg_cls5, std_cn_name, std_en_name, std_desc, std_sta, data_type, data_len, data_fmt, data_decimal_bit, busi_meaning, busi_mgr_dept, assit_dept, quote_pub_cd, formuate_accord, formuate_accord_desc, create_user, bgn_time, end_time, issu_time, invalid_time, std_ver_no, ver_no, std_alias, cd_no_rule, access_times, chg_reason, alsh_reason, relate_std, relate_std_relat from t_std_base_data
+    </sql>
+
+    <select id="selectAll"  parameterType="Integer" resultMap="TStdBaseDataResult" resultSetType="FORWARD_ONLY" fetchSize="10000">
+        <include refid="selectTStdBaseDataVo"/> limit 500000 offset #{begin}
+    </select>
+
+    <select id="selectTStdBaseDataList" parameterType="com.psbc.dams.classification.web.domain.TStdBaseData" resultMap="TStdBaseDataResult">
+        <include refid="selectTStdBaseDataVo"/>
+        <where>  
+            <if test="topicNo != null  and topicNo != ''"> and topic_no = #{topicNo}</if>
+            <if test="blgCls1 != null  and blgCls1 != ''"> and blg_cls1 = #{blgCls1}</if>
+            <if test="blgCls2 != null  and blgCls2 != ''"> and blg_cls2 = #{blgCls2}</if>
+            <if test="blgCls3 != null  and blgCls3 != ''"> and blg_cls3 = #{blgCls3}</if>
+            <if test="blgCls4 != null  and blgCls4 != ''"> and blg_cls4 = #{blgCls4}</if>
+            <if test="blgCls5 != null  and blgCls5 != ''"> and blg_cls5 = #{blgCls5}</if>
+            <if test="stdEnName != null  and stdEnName != ''"> and std_en_name like concat('%', #{stdEnName}, '%')</if>
+            <if test="stdDesc != null  and stdDesc != ''"> and std_desc = #{stdDesc}</if>
+            <if test="stdSta != null  and stdSta != ''"> and std_sta = #{stdSta}</if>
+            <if test="dataType != null  and dataType != ''"> and data_type = #{dataType}</if>
+            <if test="dataLen != null  and dataLen != ''"> and data_len = #{dataLen}</if>
+            <if test="dataFmt != null  and dataFmt != ''"> and data_fmt = #{dataFmt}</if>
+            <if test="dataDecimalBit != null  and dataDecimalBit != ''"> and data_decimal_bit = #{dataDecimalBit}</if>
+            <if test="busiMeaning != null  and busiMeaning != ''"> and busi_meaning = #{busiMeaning}</if>
+            <if test="busiMgrDept != null  and busiMgrDept != ''"> and busi_mgr_dept = #{busiMgrDept}</if>
+            <if test="assitDept != null  and assitDept != ''"> and assit_dept = #{assitDept}</if>
+            <if test="quotePubCd != null  and quotePubCd != ''"> and quote_pub_cd = #{quotePubCd}</if>
+            <if test="formuateAccord != null  and formuateAccord != ''"> and formuate_accord = #{formuateAccord}</if>
+            <if test="formuateAccordDesc != null  and formuateAccordDesc != ''"> and formuate_accord_desc = #{formuateAccordDesc}</if>
+            <if test="createUser != null  and createUser != ''"> and create_user = #{createUser}</if>
+            <if test="bgnTime != null "> and bgn_time = #{bgnTime}</if>
+            <if test="endTime != null "> and end_time = #{endTime}</if>
+            <if test="issuTime != null "> and issu_time = #{issuTime}</if>
+            <if test="invalidTime != null "> and invalid_time = #{invalidTime}</if>
+            <if test="stdVerNo != null  and stdVerNo != ''"> and std_ver_no = #{stdVerNo}</if>
+            <if test="verNo != null  and verNo != ''"> and ver_no = #{verNo}</if>
+            <if test="stdAlias != null  and stdAlias != ''"> and std_alias = #{stdAlias}</if>
+            <if test="cdNoRule != null  and cdNoRule != ''"> and cd_no_rule = #{cdNoRule}</if>
+            <if test="accessTimes != null  and accessTimes != ''"> and access_times = #{accessTimes}</if>
+            <if test="chgReason != null  and chgReason != ''"> and chg_reason = #{chgReason}</if>
+            <if test="alshReason != null  and alshReason != ''"> and alsh_reason = #{alshReason}</if>
+            <if test="relateStd != null  and relateStd != ''"> and relate_std = #{relateStd}</if>
+            <if test="relateStdRelat != null  and relateStdRelat != ''"> and relate_std_relat = #{relateStdRelat}</if>
+        </where>
+    </select>
+    
+    <select id="selectTStdBaseDataByStdNo" parameterType="String" resultMap="TStdBaseDataResult">
+        <include refid="selectTStdBaseDataVo"/>
+        where std_no = #{stdNo}
+    </select>
+
+
+    <select id="selectStdNo" resultType="java.lang.String">
+        SELECT  std_no FROM "t_std_base_data" group by std_no
+    </select>
+
+    <select id="selectAll2" resultType="com.psbc.dams.classification.web.domain.SummaryData">
+        SELECT
+        std_cn_name as fieldChinese,
+        std_en_name as fieldEnglish,
+        data_type as dataType,
+        busi_meaning as fieldMean,
+        assit_dept as businessUnit
+        FROM
+        "t_std_base_data"
+    WHERE
+        std_no IN
+    <foreach collection="list" open="(" separator=","  close=")" item="data" index="index">
+        #{data}
+    </foreach>
+    </select>
+        
+    <insert id="insertTStdBaseData" parameterType="com.psbc.dams.classification.web.domain.TStdBaseData">
+        insert into t_std_base_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stdNo != null">std_no,</if>
+            <if test="topicNo != null">topic_no,</if>
+            <if test="blgCls1 != null">blg_cls1,</if>
+            <if test="blgCls2 != null">blg_cls2,</if>
+            <if test="blgCls3 != null">blg_cls3,</if>
+            <if test="blgCls4 != null">blg_cls4,</if>
+            <if test="blgCls5 != null">blg_cls5,</if>
+            <if test="stdCnName != null">std_cn_name,</if>
+            <if test="stdEnName != null">std_en_name,</if>
+            <if test="stdDesc != null">std_desc,</if>
+            <if test="stdSta != null">std_sta,</if>
+            <if test="dataType != null">data_type,</if>
+            <if test="dataLen != null">data_len,</if>
+            <if test="dataFmt != null">data_fmt,</if>
+            <if test="dataDecimalBit != null">data_decimal_bit,</if>
+            <if test="busiMeaning != null">busi_meaning,</if>
+            <if test="busiMgrDept != null">busi_mgr_dept,</if>
+            <if test="assitDept != null">assit_dept,</if>
+            <if test="quotePubCd != null">quote_pub_cd,</if>
+            <if test="formuateAccord != null">formuate_accord,</if>
+            <if test="formuateAccordDesc != null">formuate_accord_desc,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="bgnTime != null">bgn_time,</if>
+            <if test="endTime != null">end_time,</if>
+            <if test="issuTime != null">issu_time,</if>
+            <if test="invalidTime != null">invalid_time,</if>
+            <if test="stdVerNo != null">std_ver_no,</if>
+            <if test="verNo != null">ver_no,</if>
+            <if test="stdAlias != null">std_alias,</if>
+            <if test="cdNoRule != null">cd_no_rule,</if>
+            <if test="accessTimes != null">access_times,</if>
+            <if test="chgReason != null">chg_reason,</if>
+            <if test="alshReason != null">alsh_reason,</if>
+            <if test="relateStd != null">relate_std,</if>
+            <if test="relateStdRelat != null">relate_std_relat,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stdNo != null">#{stdNo},</if>
+            <if test="topicNo != null">#{topicNo},</if>
+            <if test="blgCls1 != null">#{blgCls1},</if>
+            <if test="blgCls2 != null">#{blgCls2},</if>
+            <if test="blgCls3 != null">#{blgCls3},</if>
+            <if test="blgCls4 != null">#{blgCls4},</if>
+            <if test="blgCls5 != null">#{blgCls5},</if>
+            <if test="stdCnName != null">#{stdCnName},</if>
+            <if test="stdEnName != null">#{stdEnName},</if>
+            <if test="stdDesc != null">#{stdDesc},</if>
+            <if test="stdSta != null">#{stdSta},</if>
+            <if test="dataType != null">#{dataType},</if>
+            <if test="dataLen != null">#{dataLen},</if>
+            <if test="dataFmt != null">#{dataFmt},</if>
+            <if test="dataDecimalBit != null">#{dataDecimalBit},</if>
+            <if test="busiMeaning != null">#{busiMeaning},</if>
+            <if test="busiMgrDept != null">#{busiMgrDept},</if>
+            <if test="assitDept != null">#{assitDept},</if>
+            <if test="quotePubCd != null">#{quotePubCd},</if>
+            <if test="formuateAccord != null">#{formuateAccord},</if>
+            <if test="formuateAccordDesc != null">#{formuateAccordDesc},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="bgnTime != null">#{bgnTime},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="issuTime != null">#{issuTime},</if>
+            <if test="invalidTime != null">#{invalidTime},</if>
+            <if test="stdVerNo != null">#{stdVerNo},</if>
+            <if test="verNo != null">#{verNo},</if>
+            <if test="stdAlias != null">#{stdAlias},</if>
+            <if test="cdNoRule != null">#{cdNoRule},</if>
+            <if test="accessTimes != null">#{accessTimes},</if>
+            <if test="chgReason != null">#{chgReason},</if>
+            <if test="alshReason != null">#{alshReason},</if>
+            <if test="relateStd != null">#{relateStd},</if>
+            <if test="relateStdRelat != null">#{relateStdRelat},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTStdBaseData" parameterType="com.psbc.dams.classification.web.domain.TStdBaseData">
+        update t_std_base_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="topicNo != null">topic_no = #{topicNo},</if>
+            <if test="blgCls1 != null">blg_cls1 = #{blgCls1},</if>
+            <if test="blgCls2 != null">blg_cls2 = #{blgCls2},</if>
+            <if test="blgCls3 != null">blg_cls3 = #{blgCls3},</if>
+            <if test="blgCls4 != null">blg_cls4 = #{blgCls4},</if>
+            <if test="blgCls5 != null">blg_cls5 = #{blgCls5},</if>
+            <if test="stdCnName != null">std_cn_name = #{stdCnName},</if>
+            <if test="stdEnName != null">std_en_name = #{stdEnName},</if>
+            <if test="stdDesc != null">std_desc = #{stdDesc},</if>
+            <if test="stdSta != null">std_sta = #{stdSta},</if>
+            <if test="dataType != null">data_type = #{dataType},</if>
+            <if test="dataLen != null">data_len = #{dataLen},</if>
+            <if test="dataFmt != null">data_fmt = #{dataFmt},</if>
+            <if test="dataDecimalBit != null">data_decimal_bit = #{dataDecimalBit},</if>
+            <if test="busiMeaning != null">busi_meaning = #{busiMeaning},</if>
+            <if test="busiMgrDept != null">busi_mgr_dept = #{busiMgrDept},</if>
+            <if test="assitDept != null">assit_dept = #{assitDept},</if>
+            <if test="quotePubCd != null">quote_pub_cd = #{quotePubCd},</if>
+            <if test="formuateAccord != null">formuate_accord = #{formuateAccord},</if>
+            <if test="formuateAccordDesc != null">formuate_accord_desc = #{formuateAccordDesc},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="bgnTime != null">bgn_time = #{bgnTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="issuTime != null">issu_time = #{issuTime},</if>
+            <if test="invalidTime != null">invalid_time = #{invalidTime},</if>
+            <if test="stdVerNo != null">std_ver_no = #{stdVerNo},</if>
+            <if test="verNo != null">ver_no = #{verNo},</if>
+            <if test="stdAlias != null">std_alias = #{stdAlias},</if>
+            <if test="cdNoRule != null">cd_no_rule = #{cdNoRule},</if>
+            <if test="accessTimes != null">access_times = #{accessTimes},</if>
+            <if test="chgReason != null">chg_reason = #{chgReason},</if>
+            <if test="alshReason != null">alsh_reason = #{alshReason},</if>
+            <if test="relateStd != null">relate_std = #{relateStd},</if>
+            <if test="relateStdRelat != null">relate_std_relat = #{relateStdRelat},</if>
+        </trim>
+        where std_no = #{stdNo}
+    </update>
+
+    <delete id="deleteTStdBaseDataByStdNo" parameterType="String">
+        delete from t_std_base_data where std_no = #{stdNo}
+    </delete>
+
+    <delete id="deleteTStdBaseDataByStdNos" parameterType="String">
+        delete from t_std_base_data where std_no in 
+        <foreach item="stdNo" collection="array" open="(" separator="," close=")">
+            #{stdNo}
+        </foreach>
+    </delete>
+
+</mapper>

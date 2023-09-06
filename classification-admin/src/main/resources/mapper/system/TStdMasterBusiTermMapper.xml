@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.TStdMasterBusiTermMapper">
+    
+    <resultMap type="TStdMasterBusiTerm" id="TStdMasterBusiTermResult">
+        <result property="termNo"    column="term_no"    />
+        <result property="blgTopic"    column="blg_topic"    />
+        <result property="termName"    column="term_name"    />
+        <result property="termSource"    column="term_source"    />
+        <result property="busiDept"    column="busi_dept"    />
+        <result property="busiDefine"    column="busi_define"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="bkupField1"    column="bkup_field_1"    />
+        <result property="bkupField2"    column="bkup_field_2"    />
+        <result property="bkupField3"    column="bkup_field_3"    />
+        <result property="termAliasName"    column="term_alias_name"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectTStdMasterBusiTermVo">
+        select term_no, blg_topic, term_name, term_source, busi_dept, busi_define, create_user, create_time, bkup_field_1, bkup_field_2, bkup_field_3, term_alias_name, remark from t_std_master_busi_term
+    </sql>
+
+    <select id="selectAll"  parameterType="Integer" resultMap="TStdMasterBusiTermResult" resultSetType="FORWARD_ONLY" fetchSize="10000">
+        <include refid="selectTStdMasterBusiTermVo"/> limit 500000 offset #{begin}
+    </select>
+
+    <select id="selectTStdMasterBusiTermList" parameterType="com.psbc.dams.classification.web.domain.TStdMasterBusiTerm" resultMap="TStdMasterBusiTermResult">
+        <include refid="selectTStdMasterBusiTermVo"/>
+        <where>  
+            <if test="blgTopic != null  and blgTopic != ''"> and blg_topic = #{blgTopic}</if>
+            <if test="termName != null  and termName != ''"> and term_name like concat('%', #{termName}, '%')</if>
+            <if test="termSource != null  and termSource != ''"> and term_source = #{termSource}</if>
+            <if test="busiDept != null  and busiDept != ''"> and busi_dept = #{busiDept}</if>
+            <if test="busiDefine != null  and busiDefine != ''"> and busi_define = #{busiDefine}</if>
+            <if test="createUser != null  and createUser != ''"> and create_user = #{createUser}</if>
+            <if test="bkupField1 != null  and bkupField1 != ''"> and bkup_field_1 = #{bkupField1}</if>
+            <if test="bkupField2 != null  and bkupField2 != ''"> and bkup_field_2 = #{bkupField2}</if>
+            <if test="bkupField3 != null  and bkupField3 != ''"> and bkup_field_3 = #{bkupField3}</if>
+            <if test="termAliasName != null  and termAliasName != ''"> and term_alias_name like concat('%', #{termAliasName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTStdMasterBusiTermByTermNo" parameterType="String" resultMap="TStdMasterBusiTermResult">
+        <include refid="selectTStdMasterBusiTermVo"/>
+        where term_no = #{termNo}
+    </select>
+        
+    <insert id="insertTStdMasterBusiTerm" parameterType="com.psbc.dams.classification.web.domain.TStdMasterBusiTerm">
+        insert into t_std_master_busi_term
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="termNo != null">term_no,</if>
+            <if test="blgTopic != null">blg_topic,</if>
+            <if test="termName != null">term_name,</if>
+            <if test="termSource != null">term_source,</if>
+            <if test="busiDept != null">busi_dept,</if>
+            <if test="busiDefine != null">busi_define,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="bkupField1 != null">bkup_field_1,</if>
+            <if test="bkupField2 != null">bkup_field_2,</if>
+            <if test="bkupField3 != null">bkup_field_3,</if>
+            <if test="termAliasName != null">term_alias_name,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="termNo != null">#{termNo},</if>
+            <if test="blgTopic != null">#{blgTopic},</if>
+            <if test="termName != null">#{termName},</if>
+            <if test="termSource != null">#{termSource},</if>
+            <if test="busiDept != null">#{busiDept},</if>
+            <if test="busiDefine != null">#{busiDefine},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="bkupField1 != null">#{bkupField1},</if>
+            <if test="bkupField2 != null">#{bkupField2},</if>
+            <if test="bkupField3 != null">#{bkupField3},</if>
+            <if test="termAliasName != null">#{termAliasName},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTStdMasterBusiTerm" parameterType="com.psbc.dams.classification.web.domain.TStdMasterBusiTerm">
+        update t_std_master_busi_term
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="blgTopic != null">blg_topic = #{blgTopic},</if>
+            <if test="termName != null">term_name = #{termName},</if>
+            <if test="termSource != null">term_source = #{termSource},</if>
+            <if test="busiDept != null">busi_dept = #{busiDept},</if>
+            <if test="busiDefine != null">busi_define = #{busiDefine},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="bkupField1 != null">bkup_field_1 = #{bkupField1},</if>
+            <if test="bkupField2 != null">bkup_field_2 = #{bkupField2},</if>
+            <if test="bkupField3 != null">bkup_field_3 = #{bkupField3},</if>
+            <if test="termAliasName != null">term_alias_name = #{termAliasName},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where term_no = #{termNo}
+    </update>
+
+    <delete id="deleteTStdMasterBusiTermByTermNo" parameterType="String">
+        delete from t_std_master_busi_term where term_no = #{termNo}
+    </delete>
+
+    <delete id="deleteTStdMasterBusiTermByTermNos" parameterType="String">
+        delete from t_std_master_busi_term where term_no in 
+        <foreach item="termNo" collection="array" open="(" separator="," close=")">
+            #{termNo}
+        </foreach>
+    </delete>
+
+</mapper>

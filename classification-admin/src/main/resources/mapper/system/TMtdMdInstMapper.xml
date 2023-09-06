@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.TMtdMdInstMapper">
+    
+    <resultMap type="TMtdMdInst" id="TMtdMdInstResult">
+        <result property="instId"    column="inst_id"    />
+        <result property="clsId"    column="cls_id"    />
+        <result property="supInstId"    column="sup_inst_id"    />
+        <result property="dsId"    column="ds_id"    />
+        <result property="instCode"    column="inst_code"    />
+        <result property="instName"    column="inst_name"    />
+        <result property="instPath"    column="inst_path"    />
+        <result property="verNo"    column="ver_no"    />
+        <result property="effTime"    column="eff_time"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="deptId"    column="dept_id"    />
+        <result property="schemaInstId"    column="schema_inst_id"    />
+        <result property="instPathName"    column="inst_path_name"    />
+        <result property="blgEnviron"    column="blg_environ"    />
+        <result property="sysCd"    column="sys_cd"    />
+        <result property="projId"    column="proj_id"    />
+    </resultMap>
+
+    <sql id="selectTMtdMdInstVo">
+        select inst_id, cls_id, sup_inst_id, ds_id, inst_code, inst_name, inst_path, ver_no, eff_time, create_user, dept_id, schema_inst_id, inst_path_name, blg_environ, sys_cd, proj_id from t_mtd_md_inst
+    </sql>
+
+    <select id="selectTMtdMdInstList" parameterType="java.util.List" resultMap="TMtdMdInstResult">
+        <include refid="selectTMtdMdInstVo"/>
+        <where>
+            inst_id in
+            <foreach collection="list" item="instId" open="(" separator="," close=")">
+                #{instId}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="selectinstId"  resultType="java.lang.String">
+        select inst_id from t_mtd_md_inst
+    </select>
+
+    <select id="selectTMtdMdInstListSchema"  resultType="java.lang.String">
+        select inst_id  FROM t_mtd_md_inst WHERE cls_id = 'Schema' group by inst_id
+    </select>
+
+    <select id="selectAll2"  resultType="com.psbc.dams.classification.web.domain.SummaryData">
+        SELECT
+        aw.attrb_20 AS projectName,
+        temp1.inst_code AS databaseEnglish,
+        temp1.t_inst_code AS tableEnglish,
+        temp1.t_inst_name AS tableChinese,
+        C.inst_code AS fieldEnglish,
+        C.inst_name AS fieldChinese,
+        aw.attrb_16 AS fieldMean,
+        attrb_3 AS dataType,
+        attrb_15 AS enterpriseDataDictionary
+        FROM
+        (
+        SELECT A.inst_code,
+        b.inst_code AS t_inst_code,
+        b.inst_name AS t_inst_name,
+        b.inst_id
+        FROM
+        t_mtd_md_inst
+        A LEFT JOIN t_mtd_md_inst b ON A.inst_id = b.sup_inst_id
+        WHERE
+        A.inst_id IN
+        <foreach collection="list" open="(" separator=","  close=")" item="data" index="index">
+            #{data}
+        </foreach>
+        ) AS temp1
+        LEFT JOIN t_mtd_md_inst C ON temp1.inst_id = C.sup_inst_id
+        LEFT JOIN t_mtd_md_inst_val aw ON temp1.inst_id = aw.inst_id
+        WHERE
+        C.blg_environ = 'integrat' and
+        aw.inst_id = temp1.inst_id
+    </select>
+    
+    <select id="selectTMtdMdInstByInstId" resultMap="TMtdMdInstResult">
+        <include refid="selectTMtdMdInstVo"/> limit 100000
+    </select>
+        
+    <insert id="insertTMtdMdInst">
+        insert into t_mtd_md_inst values
+        <foreach item="data" collection="list" separator=",">
+            (
+            #{data.instId},
+            #{data.clsId},
+            #{data.supInstId},
+            #{data.dsId},
+            #{data.instCode},
+            #{data.instName},
+            #{data.instPath},
+            #{data.verNo},
+            #{data.effTime},
+            #{data.createUser},
+            #{data.deptId},
+            #{data.schemaInstId},
+            #{data.instPathName},
+            #{data.blgEnviron},
+            #{data.sysCd},
+            #{data.projId}
+            )
+         </foreach>
+    </insert>
+
+    <update id="updateTMtdMdInst" parameterType="com.psbc.dams.classification.web.domain.TMtdMdInst">
+        update t_mtd_md_inst
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="clsId != null">cls_id = #{clsId},</if>
+            <if test="supInstId != null">sup_inst_id = #{supInstId},</if>
+            <if test="dsId != null">ds_id = #{dsId},</if>
+            <if test="instCode != null">inst_code = #{instCode},</if>
+            <if test="instName != null">inst_name = #{instName},</if>
+            <if test="instPath != null">inst_path = #{instPath},</if>
+            <if test="verNo != null">ver_no = #{verNo},</if>
+            <if test="effTime != null">eff_time = #{effTime},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="schemaInstId != null">schema_inst_id = #{schemaInstId},</if>
+            <if test="instPathName != null">inst_path_name = #{instPathName},</if>
+            <if test="blgEnviron != null">blg_environ = #{blgEnviron},</if>
+            <if test="sysCd != null">sys_cd = #{sysCd},</if>
+            <if test="projId != null">proj_id = #{projId},</if>
+        </trim>
+        where inst_id = #{instId}
+    </update>
+
+    <delete id="deleteTMtdMdInstByInstId" parameterType="String">
+        delete from t_mtd_md_inst where inst_id = #{instId}
+    </delete>
+
+    <delete id="deleteTMtdMdInstByInstIds" parameterType="String">
+        delete from t_mtd_md_inst where inst_id in 
+        <foreach item="instId" collection="array" open="(" separator="," close=")">
+            #{instId}
+        </foreach>
+    </delete>
+
+    <select id="selectAll"  parameterType="Integer" resultMap="TMtdMdInstResult" resultSetType="FORWARD_ONLY" fetchSize="10000">
+        <include refid="selectTMtdMdInstVo"/> limit 500000 offset #{begin}
+    </select>
+
+    <select id="selectAll1"  parameterType="Integer" resultMap="TMtdMdInstResult">
+        <include refid="selectTMtdMdInstVo"/> limit 500000 offset #{begin}
+    </select>
+</mapper>

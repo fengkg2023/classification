@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.SummaryDataMapper">
+
+    <resultMap type="SummaryData" id="SummaryDataResult">
+        <result property="id"    column="id"    />
+        <result property="projectName"    column="project_name"    />
+        <result property="dataType"    column="data_type"    />
+        <result property="databaseEnglish"    column="database_english"    />
+        <result property="tableEnglish"    column="table_english"    />
+        <result property="tableChinese"    column="table_chinese"    />
+        <result property="fieldEnglish"    column="field_english"    />
+        <result property="fieldChinese"    column="field_chinese"    />
+        <result property="fieldMean"    column="field_mean"    />
+        <result property="enterpriseDataDictionary"    column="enterprise_data_dictionary"    />
+        <result property="result1"    column="result1"    />
+        <result property="result2"    column="result2"    />
+        <result property="result3"    column="result3"    />
+        <result property="result4"    column="result4"    />
+        <result property="resultLevel"    column="result_level"    />
+        <result property="businessUnit"    column="business_unit"    />
+        <result property="remark"    column="remark"    />
+        <result property="confirm"    column="confirm"    />
+        <result property="confirmor"    column="confirmor"    />
+    </resultMap>
+
+    <sql id="selectSummaryDataVo">
+        select id, project_name, data_type, database_english, table_english, table_chinese, field_english, field_chinese, field_mean, enterprise_data_dictionary, result1, result2, result3, result4, result_level, business_unit, remark, confirm, confirmor from summary_data
+    </sql>
+
+    <select id="selectSummaryDataList" parameterType="SummaryData" resultMap="SummaryDataResult">
+        <include refid="selectSummaryDataVo"/>
+        <where>
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+            <if test="dataType != null  and dataType != ''"> and data_type = #{dataType}</if>
+            <if test="databaseEnglish != null  and databaseEnglish != ''"> and database_english = #{databaseEnglish}</if>
+            <if test="tableEnglish != null  and tableEnglish != ''"> and table_english = #{tableEnglish}</if>
+            <if test="tableChinese != null  and tableChinese != ''"> and table_chinese = #{tableChinese}</if>
+            <if test="fieldEnglish != null  and fieldEnglish != ''"> and field_english = #{fieldEnglish}</if>
+            <if test="fieldChinese != null  and fieldChinese != ''"> and field_chinese = #{fieldChinese}</if>
+            <if test="fieldMean != null  and fieldMean != ''"> and field_mean = #{fieldMean}</if>
+            <if test="enterpriseDataDictionary != null  and enterpriseDataDictionary != ''"> and enterprise_data_dictionary = #{enterpriseDataDictionary}</if>
+            <if test="result1 != null  and result1 != ''"> and result1 = #{result1}</if>
+            <if test="result2 != null  and result2 != ''"> and result2 = #{result2}</if>
+            <if test="result3 != null  and result3 != ''"> and result3 = #{result3}</if>
+            <if test="result4 != null  and result4 != ''"> and result4 = #{result4}</if>
+            <if test="resultLevel != null  and resultLevel != ''"> and result_level = #{resultLevel}</if>
+            <if test="businessUnit != null  and businessUnit != ''"> and business_unit = #{businessUnit}</if>
+            <if test="confirm != null  and confirm != ''"> and confirm = #{confirm}</if>
+            <if test="confirmor != null  and confirmor != ''"> and confirmor = #{confirmor}</if>
+        </where>
+    </select>
+
+    <select id="selectSummaryDataById" parameterType="String" resultMap="SummaryDataResult">
+        <include refid="selectSummaryDataVo"/>
+        where id = #{id}
+    </select>
+
+
+    <select id="selectAll" resultType="com.psbc.dams.classification.web.domain.SummaryData">
+        <include refid="selectSummaryDataVo"/> where table_chinese = #{tableName} and database_english = #{dbName}
+        <if test="authorization != null">
+            and create_user = #{authorization}
+        </if>
+        and status = '0'
+    </select>
+
+
+    <select id="selectVo" resultType="com.psbc.dams.classification.web.domain.JsonsRootBean">
+        select table_chinese as tablenamecn, database_english as dbname ,table_english as tablename
+        from summary_data group by table_chinese , database_english ,table_english where
+        <if test="authorization != null">
+            create_user = #{authorization} and
+        </if>
+        status = '0'
+    </select>
+
+
+    <insert id="insertSummaryData" parameterType="SummaryData">
+        insert into summary_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="projectName != null">project_name,</if>
+            <if test="dataType != null">data_type,</if>
+            <if test="databaseEnglish != null">database_english,</if>
+            <if test="tableEnglish != null">table_english,</if>
+            <if test="tableChinese != null">table_chinese,</if>
+            <if test="fieldEnglish != null">field_english,</if>
+            <if test="fieldChinese != null">field_chinese,</if>
+            <if test="fieldMean != null">field_mean,</if>
+            <if test="enterpriseDataDictionary != null">enterprise_data_dictionary,</if>
+            <if test="result1 != null">result1,</if>
+            <if test="result2 != null">result2,</if>
+            <if test="result3 != null">result3,</if>
+            <if test="result4 != null">result4,</if>
+            <if test="resultLevel != null">result_level,</if>
+            <if test="businessUnit != null">business_unit,</if>
+            <if test="remark != null">remark,</if>
+            <if test="confirm != null">confirm,</if>
+            <if test="confirmor != null">confirmor,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="projectName != null">#{projectName},</if>
+            <if test="dataType != null">#{dataType},</if>
+            <if test="databaseEnglish != null">#{databaseEnglish},</if>
+            <if test="tableEnglish != null">#{tableEnglish},</if>
+            <if test="tableChinese != null">#{tableChinese},</if>
+            <if test="fieldEnglish != null">#{fieldEnglish},</if>
+            <if test="fieldChinese != null">#{fieldChinese},</if>
+            <if test="fieldMean != null">#{fieldMean},</if>
+            <if test="enterpriseDataDictionary != null">#{enterpriseDataDictionary},</if>
+            <if test="result1 != null">#{result1},</if>
+            <if test="result2 != null">#{result2},</if>
+            <if test="result3 != null">#{result3},</if>
+            <if test="result4 != null">#{result4},</if>
+            <if test="resultLevel != null">#{resultLevel},</if>
+            <if test="businessUnit != null">#{businessUnit},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="confirm != null">#{confirm},</if>
+            <if test="confirmor != null">#{confirmor},</if>
+        </trim>
+    </insert>
+    <insert id="insertIfNoExists">
+        select count(*) from summary_data
+        <where>
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+            <if test="databaseEnglish != null  and databaseEnglish != ''"> and database_english = #{databaseEnglish}</if>
+            <if test="tableEnglish != null  and tableEnglish != ''"> and table_english = #{tableEnglish}</if>
+            <if test="fieldEnglish != null  and fieldEnglish != ''"> and field_english = #{fieldEnglish}</if>
+            <if test="fieldMean != null  and fieldMean != ''"> and field_mean = #{fieldMean}</if>
+        </where>
+    </insert>
+
+    <insert id="insertAll">
+        insert into summary_data (id,project_name, data_type, database_english, table_english, table_chinese,
+                                  field_english, field_chinese, field_mean, enterprise_data_dictionary, result1,
+                                  result2, result3, result4, result_level, business_unit, remark, confirm, confirmor
+        ) values
+        <foreach item="data" collection="list" separator=",">
+            (
+             #{data.id},
+            #{data.projectName},
+            #{data.dataType},
+            #{data.databaseEnglish},
+            #{data.tableEnglish},
+            #{data.tableChinese},
+            #{data.fieldEnglish},
+            #{data.fieldChinese},
+            #{data.fieldMean},
+            #{data.enterpriseDataDictionary},
+            #{data.result1},
+            #{data.result2},
+            #{data.result3},
+            #{data.result4},
+            #{data.resultLevel},
+            #{data.businessUnit},
+            #{data.remark},
+            #{data.confirm},
+            #{data.confirmor}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateSummaryData" parameterType="SummaryData">
+        update summary_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectName != null">project_name = #{projectName},</if>
+            <if test="dataType != null">data_type = #{dataType},</if>
+            <if test="databaseEnglish != null">database_english = #{databaseEnglish},</if>
+            <if test="tableEnglish != null">table_english = #{tableEnglish},</if>
+            <if test="tableChinese != null">table_chinese = #{tableChinese},</if>
+            <if test="fieldEnglish != null">field_english = #{fieldEnglish},</if>
+            <if test="fieldChinese != null">field_chinese = #{fieldChinese},</if>
+            <if test="fieldMean != null">field_mean = #{fieldMean},</if>
+            <if test="enterpriseDataDictionary != null">enterprise_data_dictionary = #{enterpriseDataDictionary},</if>
+            <if test="result1 != null">result1 = #{result1},</if>
+            <if test="result2 != null">result2 = #{result2},</if>
+            <if test="result3 != null">result3 = #{result3},</if>
+            <if test="result4 != null">result4 = #{result4},</if>
+            <if test="resultLevel != null">result_level = #{resultLevel},</if>
+            <if test="businessUnit != null">business_unit = #{businessUnit},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="confirm != null">confirm = #{confirm},</if>
+            <if test="confirmor != null">confirmor = #{confirmor},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSummaryDataById" parameterType="String">
+        delete from summary_data where id = #{id}
+    </delete>
+
+    <delete id="deleteSummaryDataByIds" parameterType="String">
+        delete from summary_data where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+<!--    <insert id="insertIfNoExists">-->
+<!--        if not exists (select 1 from summary_data)-->
+<!--    </insert>-->
+
+</mapper>

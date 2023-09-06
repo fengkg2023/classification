@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.psbc.dams.classification.web.mapper.TStdIdxMapper">
+    
+    <resultMap type="TStdIdx" id="TStdIdxResult">
+        <result property="idxNo"    column="idx_no"    />
+        <result property="sysIdxNo"    column="sys_idx_no"    />
+        <result property="idxName"    column="idx_name"    />
+        <result property="mgIdxName"    column="mg_idx_name"    />
+        <result property="mgIdxDefine"    column="mg_idx_define"    />
+        <result property="remark"    column="remark"    />
+        <result property="idxLvl1Cls"    column="idx_lvl1_cls"    />
+        <result property="idxLvl2Cls"    column="idx_lvl2_cls"    />
+        <result property="idxLvl3Cls"    column="idx_lvl3_cls"    />
+        <result property="idxBusiMeaning"    column="idx_busi_meaning"    />
+        <result property="idxCalFrml"    column="idx_cal_frml"    />
+        <result property="idxGenCycle"    column="idx_gen_cycle"    />
+        <result property="relateDms"    column="relate_dms"    />
+        <result property="usePubStatisRule"    column="use_pub_statis_rule"    />
+        <result property="rptEntityTabAstNo"    column="rpt_entity_tab_ast_no"    />
+        <result property="rptEntityTabCnName"    column="rpt_entity_tab_cn_name"    />
+        <result property="rptEntityTabEnName"    column="rpt_entity_tab_en_name"    />
+        <result property="rptEntityFieldAstNo"    column="rpt_entity_field_ast_no"    />
+        <result property="rptEntityFieldCnName"    column="rpt_entity_field_cn_name"    />
+        <result property="rptEntityFieldEnName"    column="rpt_entity_field_en_name"    />
+        <result property="idxMachSys"    column="idx_mach_sys"    />
+        <result property="idxMachDbName"    column="idx_mach_db_name"    />
+        <result property="idxLastHvSys"    column="idx_last_hv_sys"    />
+        <result property="idxDownstrSys"    column="idx_downstr_sys"    />
+        <result property="idxMeasureU"    column="idx_measure_u"    />
+        <result property="idxValueAccuracy"    column="idx_value_accuracy"    />
+        <result property="oldTabEnName"    column="old_tab_en_name"    />
+        <result property="oldTabCnName"    column="old_tab_cn_name"    />
+        <result property="oldFieldEnName"    column="old_field_en_name"    />
+        <result property="oldFieldCnName"    column="old_field_cn_name"    />
+        <result property="idxFthgSumLogic"    column="idx_fthg_sum_logic"    />
+        <result property="idxFthgFilterCond"    column="idx_fthg_filter_cond"    />
+        <result property="busiDept"    column="busi_dept"    />
+        <result property="busiConter"    column="busi_conter"    />
+        <result property="dvlpDept"    column="dvlp_dept"    />
+        <result property="techConter"    column="tech_conter"    />
+        <result property="crspIdxDataStd"    column="crsp_idx_data_std"    />
+        <result property="idxDataStdNo"    column="idx_data_std_no"    />
+        <result property="idxDataIdxName"    column="idx_data_idx_name"    />
+        <result property="idxDataStdStatisRule"    column="idx_data_std_statis_rule"    />
+        <result property="idxDataStdRelateDms"    column="idx_data_std_relate_dms"    />
+        <result property="verNo"    column="ver_no"    />
+        <result property="combNo"    column="comb_no"    />
+        <result property="combDesc"    column="comb_desc"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="modTime"    column="mod_time"    />
+    </resultMap>
+
+    <sql id="selectTStdIdxVo">
+        select idx_no, sys_idx_no, idx_name, mg_idx_name, mg_idx_define, remark, idx_lvl1_cls, idx_lvl2_cls, idx_lvl3_cls, idx_busi_meaning, idx_cal_frml, idx_gen_cycle, relate_dms, use_pub_statis_rule, rpt_entity_tab_ast_no, rpt_entity_tab_cn_name, rpt_entity_tab_en_name, rpt_entity_field_ast_no, rpt_entity_field_cn_name, rpt_entity_field_en_name, idx_mach_sys, idx_mach_db_name, idx_last_hv_sys, idx_downstr_sys, idx_measure_u, idx_value_accuracy, old_tab_en_name, old_tab_cn_name, old_field_en_name, old_field_cn_name, idx_fthg_sum_logic, idx_fthg_filter_cond, busi_dept, busi_conter, dvlp_dept, tech_conter, crsp_idx_data_std, idx_data_std_no, idx_data_idx_name, idx_data_std_statis_rule, idx_data_std_relate_dms, ver_no, comb_no, comb_desc, create_time, mod_time from t_std_idx
+    </sql>
+
+    <select id="selectAll"  parameterType="Integer" resultMap="TStdIdxResult" resultSetType="FORWARD_ONLY" fetchSize="10000">
+        <include refid="selectTStdIdxVo"/> limit 500000 offset #{begin}
+    </select>
+
+    <select id="selectTStdIdxList" parameterType="com.psbc.dams.classification.web.domain.TStdIdx" resultMap="TStdIdxResult">
+        <include refid="selectTStdIdxVo"/>
+        <where>  
+            <if test="sysIdxNo != null  and sysIdxNo != ''"> and sys_idx_no = #{sysIdxNo}</if>
+            <if test="idxName != null  and idxName != ''"> and idx_name like concat('%', #{idxName}, '%')</if>
+            <if test="mgIdxName != null  and mgIdxName != ''"> and mg_idx_name like concat('%', #{mgIdxName}, '%')</if>
+            <if test="mgIdxDefine != null  and mgIdxDefine != ''"> and mg_idx_define = #{mgIdxDefine}</if>
+            <if test="idxLvl1Cls != null  and idxLvl1Cls != ''"> and idx_lvl1_cls = #{idxLvl1Cls}</if>
+            <if test="idxLvl2Cls != null  and idxLvl2Cls != ''"> and idx_lvl2_cls = #{idxLvl2Cls}</if>
+            <if test="idxLvl3Cls != null  and idxLvl3Cls != ''"> and idx_lvl3_cls = #{idxLvl3Cls}</if>
+            <if test="idxBusiMeaning != null  and idxBusiMeaning != ''"> and idx_busi_meaning = #{idxBusiMeaning}</if>
+            <if test="idxCalFrml != null  and idxCalFrml != ''"> and idx_cal_frml = #{idxCalFrml}</if>
+            <if test="idxGenCycle != null  and idxGenCycle != ''"> and idx_gen_cycle = #{idxGenCycle}</if>
+            <if test="relateDms != null  and relateDms != ''"> and relate_dms = #{relateDms}</if>
+            <if test="usePubStatisRule != null  and usePubStatisRule != ''"> and use_pub_statis_rule = #{usePubStatisRule}</if>
+            <if test="rptEntityTabAstNo != null  and rptEntityTabAstNo != ''"> and rpt_entity_tab_ast_no = #{rptEntityTabAstNo}</if>
+            <if test="rptEntityTabCnName != null  and rptEntityTabCnName != ''"> and rpt_entity_tab_cn_name like concat('%', #{rptEntityTabCnName}, '%')</if>
+            <if test="rptEntityTabEnName != null  and rptEntityTabEnName != ''"> and rpt_entity_tab_en_name like concat('%', #{rptEntityTabEnName}, '%')</if>
+            <if test="rptEntityFieldAstNo != null  and rptEntityFieldAstNo != ''"> and rpt_entity_field_ast_no = #{rptEntityFieldAstNo}</if>
+            <if test="rptEntityFieldCnName != null  and rptEntityFieldCnName != ''"> and rpt_entity_field_cn_name like concat('%', #{rptEntityFieldCnName}, '%')</if>
+            <if test="rptEntityFieldEnName != null  and rptEntityFieldEnName != ''"> and rpt_entity_field_en_name like concat('%', #{rptEntityFieldEnName}, '%')</if>
+            <if test="idxMachSys != null  and idxMachSys != ''"> and idx_mach_sys = #{idxMachSys}</if>
+            <if test="idxMachDbName != null  and idxMachDbName != ''"> and idx_mach_db_name like concat('%', #{idxMachDbName}, '%')</if>
+            <if test="idxLastHvSys != null  and idxLastHvSys != ''"> and idx_last_hv_sys = #{idxLastHvSys}</if>
+            <if test="idxDownstrSys != null  and idxDownstrSys != ''"> and idx_downstr_sys = #{idxDownstrSys}</if>
+            <if test="idxMeasureU != null  and idxMeasureU != ''"> and idx_measure_u = #{idxMeasureU}</if>
+            <if test="idxValueAccuracy != null  and idxValueAccuracy != ''"> and idx_value_accuracy = #{idxValueAccuracy}</if>
+            <if test="oldTabEnName != null  and oldTabEnName != ''"> and old_tab_en_name like concat('%', #{oldTabEnName}, '%')</if>
+            <if test="oldTabCnName != null  and oldTabCnName != ''"> and old_tab_cn_name like concat('%', #{oldTabCnName}, '%')</if>
+            <if test="oldFieldEnName != null  and oldFieldEnName != ''"> and old_field_en_name like concat('%', #{oldFieldEnName}, '%')</if>
+            <if test="oldFieldCnName != null  and oldFieldCnName != ''"> and old_field_cn_name like concat('%', #{oldFieldCnName}, '%')</if>
+            <if test="idxFthgSumLogic != null  and idxFthgSumLogic != ''"> and idx_fthg_sum_logic = #{idxFthgSumLogic}</if>
+            <if test="idxFthgFilterCond != null  and idxFthgFilterCond != ''"> and idx_fthg_filter_cond = #{idxFthgFilterCond}</if>
+            <if test="busiDept != null  and busiDept != ''"> and busi_dept = #{busiDept}</if>
+            <if test="busiConter != null  and busiConter != ''"> and busi_conter = #{busiConter}</if>
+            <if test="dvlpDept != null  and dvlpDept != ''"> and dvlp_dept = #{dvlpDept}</if>
+            <if test="techConter != null  and techConter != ''"> and tech_conter = #{techConter}</if>
+            <if test="crspIdxDataStd != null  and crspIdxDataStd != ''"> and crsp_idx_data_std = #{crspIdxDataStd}</if>
+            <if test="idxDataStdNo != null  and idxDataStdNo != ''"> and idx_data_std_no = #{idxDataStdNo}</if>
+            <if test="idxDataIdxName != null  and idxDataIdxName != ''"> and idx_data_idx_name like concat('%', #{idxDataIdxName}, '%')</if>
+            <if test="idxDataStdStatisRule != null  and idxDataStdStatisRule != ''"> and idx_data_std_statis_rule = #{idxDataStdStatisRule}</if>
+            <if test="idxDataStdRelateDms != null  and idxDataStdRelateDms != ''"> and idx_data_std_relate_dms = #{idxDataStdRelateDms}</if>
+            <if test="verNo != null  and verNo != ''"> and ver_no = #{verNo}</if>
+            <if test="combNo != null  and combNo != ''"> and comb_no = #{combNo}</if>
+            <if test="combDesc != null  and combDesc != ''"> and comb_desc = #{combDesc}</if>
+            <if test="modTime != null "> and mod_time = #{modTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectTStdIdxByIdxNo" parameterType="String" resultMap="TStdIdxResult">
+        <include refid="selectTStdIdxVo"/>
+        where idx_no = #{idxNo}
+    </select>
+        
+    <insert id="insertTStdIdx" parameterType="com.psbc.dams.classification.web.domain.TStdIdx">
+        insert into t_std_idx
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idxNo != null">idx_no,</if>
+            <if test="sysIdxNo != null">sys_idx_no,</if>
+            <if test="idxName != null">idx_name,</if>
+            <if test="mgIdxName != null">mg_idx_name,</if>
+            <if test="mgIdxDefine != null">mg_idx_define,</if>
+            <if test="remark != null">remark,</if>
+            <if test="idxLvl1Cls != null">idx_lvl1_cls,</if>
+            <if test="idxLvl2Cls != null">idx_lvl2_cls,</if>
+            <if test="idxLvl3Cls != null">idx_lvl3_cls,</if>
+            <if test="idxBusiMeaning != null">idx_busi_meaning,</if>
+            <if test="idxCalFrml != null">idx_cal_frml,</if>
+            <if test="idxGenCycle != null">idx_gen_cycle,</if>
+            <if test="relateDms != null">relate_dms,</if>
+            <if test="usePubStatisRule != null">use_pub_statis_rule,</if>
+            <if test="rptEntityTabAstNo != null">rpt_entity_tab_ast_no,</if>
+            <if test="rptEntityTabCnName != null">rpt_entity_tab_cn_name,</if>
+            <if test="rptEntityTabEnName != null">rpt_entity_tab_en_name,</if>
+            <if test="rptEntityFieldAstNo != null">rpt_entity_field_ast_no,</if>
+            <if test="rptEntityFieldCnName != null">rpt_entity_field_cn_name,</if>
+            <if test="rptEntityFieldEnName != null">rpt_entity_field_en_name,</if>
+            <if test="idxMachSys != null">idx_mach_sys,</if>
+            <if test="idxMachDbName != null">idx_mach_db_name,</if>
+            <if test="idxLastHvSys != null">idx_last_hv_sys,</if>
+            <if test="idxDownstrSys != null">idx_downstr_sys,</if>
+            <if test="idxMeasureU != null">idx_measure_u,</if>
+            <if test="idxValueAccuracy != null">idx_value_accuracy,</if>
+            <if test="oldTabEnName != null">old_tab_en_name,</if>
+            <if test="oldTabCnName != null">old_tab_cn_name,</if>
+            <if test="oldFieldEnName != null">old_field_en_name,</if>
+            <if test="oldFieldCnName != null">old_field_cn_name,</if>
+            <if test="idxFthgSumLogic != null">idx_fthg_sum_logic,</if>
+            <if test="idxFthgFilterCond != null">idx_fthg_filter_cond,</if>
+            <if test="busiDept != null">busi_dept,</if>
+            <if test="busiConter != null">busi_conter,</if>
+            <if test="dvlpDept != null">dvlp_dept,</if>
+            <if test="techConter != null">tech_conter,</if>
+            <if test="crspIdxDataStd != null">crsp_idx_data_std,</if>
+            <if test="idxDataStdNo != null">idx_data_std_no,</if>
+            <if test="idxDataIdxName != null">idx_data_idx_name,</if>
+            <if test="idxDataStdStatisRule != null">idx_data_std_statis_rule,</if>
+            <if test="idxDataStdRelateDms != null">idx_data_std_relate_dms,</if>
+            <if test="verNo != null">ver_no,</if>
+            <if test="combNo != null">comb_no,</if>
+            <if test="combDesc != null">comb_desc,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="modTime != null">mod_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="idxNo != null">#{idxNo},</if>
+            <if test="sysIdxNo != null">#{sysIdxNo},</if>
+            <if test="idxName != null">#{idxName},</if>
+            <if test="mgIdxName != null">#{mgIdxName},</if>
+            <if test="mgIdxDefine != null">#{mgIdxDefine},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="idxLvl1Cls != null">#{idxLvl1Cls},</if>
+            <if test="idxLvl2Cls != null">#{idxLvl2Cls},</if>
+            <if test="idxLvl3Cls != null">#{idxLvl3Cls},</if>
+            <if test="idxBusiMeaning != null">#{idxBusiMeaning},</if>
+            <if test="idxCalFrml != null">#{idxCalFrml},</if>
+            <if test="idxGenCycle != null">#{idxGenCycle},</if>
+            <if test="relateDms != null">#{relateDms},</if>
+            <if test="usePubStatisRule != null">#{usePubStatisRule},</if>
+            <if test="rptEntityTabAstNo != null">#{rptEntityTabAstNo},</if>
+            <if test="rptEntityTabCnName != null">#{rptEntityTabCnName},</if>
+            <if test="rptEntityTabEnName != null">#{rptEntityTabEnName},</if>
+            <if test="rptEntityFieldAstNo != null">#{rptEntityFieldAstNo},</if>
+            <if test="rptEntityFieldCnName != null">#{rptEntityFieldCnName},</if>
+            <if test="rptEntityFieldEnName != null">#{rptEntityFieldEnName},</if>
+            <if test="idxMachSys != null">#{idxMachSys},</if>
+            <if test="idxMachDbName != null">#{idxMachDbName},</if>
+            <if test="idxLastHvSys != null">#{idxLastHvSys},</if>
+            <if test="idxDownstrSys != null">#{idxDownstrSys},</if>
+            <if test="idxMeasureU != null">#{idxMeasureU},</if>
+            <if test="idxValueAccuracy != null">#{idxValueAccuracy},</if>
+            <if test="oldTabEnName != null">#{oldTabEnName},</if>
+            <if test="oldTabCnName != null">#{oldTabCnName},</if>
+            <if test="oldFieldEnName != null">#{oldFieldEnName},</if>
+            <if test="oldFieldCnName != null">#{oldFieldCnName},</if>
+            <if test="idxFthgSumLogic != null">#{idxFthgSumLogic},</if>
+            <if test="idxFthgFilterCond != null">#{idxFthgFilterCond},</if>
+            <if test="busiDept != null">#{busiDept},</if>
+            <if test="busiConter != null">#{busiConter},</if>
+            <if test="dvlpDept != null">#{dvlpDept},</if>
+            <if test="techConter != null">#{techConter},</if>
+            <if test="crspIdxDataStd != null">#{crspIdxDataStd},</if>
+            <if test="idxDataStdNo != null">#{idxDataStdNo},</if>
+            <if test="idxDataIdxName != null">#{idxDataIdxName},</if>
+            <if test="idxDataStdStatisRule != null">#{idxDataStdStatisRule},</if>
+            <if test="idxDataStdRelateDms != null">#{idxDataStdRelateDms},</if>
+            <if test="verNo != null">#{verNo},</if>
+            <if test="combNo != null">#{combNo},</if>
+            <if test="combDesc != null">#{combDesc},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="modTime != null">#{modTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTStdIdx" parameterType="com.psbc.dams.classification.web.domain.TStdIdx">
+        update t_std_idx
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sysIdxNo != null">sys_idx_no = #{sysIdxNo},</if>
+            <if test="idxName != null">idx_name = #{idxName},</if>
+            <if test="mgIdxName != null">mg_idx_name = #{mgIdxName},</if>
+            <if test="mgIdxDefine != null">mg_idx_define = #{mgIdxDefine},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="idxLvl1Cls != null">idx_lvl1_cls = #{idxLvl1Cls},</if>
+            <if test="idxLvl2Cls != null">idx_lvl2_cls = #{idxLvl2Cls},</if>
+            <if test="idxLvl3Cls != null">idx_lvl3_cls = #{idxLvl3Cls},</if>
+            <if test="idxBusiMeaning != null">idx_busi_meaning = #{idxBusiMeaning},</if>
+            <if test="idxCalFrml != null">idx_cal_frml = #{idxCalFrml},</if>
+            <if test="idxGenCycle != null">idx_gen_cycle = #{idxGenCycle},</if>
+            <if test="relateDms != null">relate_dms = #{relateDms},</if>
+            <if test="usePubStatisRule != null">use_pub_statis_rule = #{usePubStatisRule},</if>
+            <if test="rptEntityTabAstNo != null">rpt_entity_tab_ast_no = #{rptEntityTabAstNo},</if>
+            <if test="rptEntityTabCnName != null">rpt_entity_tab_cn_name = #{rptEntityTabCnName},</if>
+            <if test="rptEntityTabEnName != null">rpt_entity_tab_en_name = #{rptEntityTabEnName},</if>
+            <if test="rptEntityFieldAstNo != null">rpt_entity_field_ast_no = #{rptEntityFieldAstNo},</if>
+            <if test="rptEntityFieldCnName != null">rpt_entity_field_cn_name = #{rptEntityFieldCnName},</if>
+            <if test="rptEntityFieldEnName != null">rpt_entity_field_en_name = #{rptEntityFieldEnName},</if>
+            <if test="idxMachSys != null">idx_mach_sys = #{idxMachSys},</if>
+            <if test="idxMachDbName != null">idx_mach_db_name = #{idxMachDbName},</if>
+            <if test="idxLastHvSys != null">idx_last_hv_sys = #{idxLastHvSys},</if>
+            <if test="idxDownstrSys != null">idx_downstr_sys = #{idxDownstrSys},</if>
+            <if test="idxMeasureU != null">idx_measure_u = #{idxMeasureU},</if>
+            <if test="idxValueAccuracy != null">idx_value_accuracy = #{idxValueAccuracy},</if>
+            <if test="oldTabEnName != null">old_tab_en_name = #{oldTabEnName},</if>
+            <if test="oldTabCnName != null">old_tab_cn_name = #{oldTabCnName},</if>
+            <if test="oldFieldEnName != null">old_field_en_name = #{oldFieldEnName},</if>
+            <if test="oldFieldCnName != null">old_field_cn_name = #{oldFieldCnName},</if>
+            <if test="idxFthgSumLogic != null">idx_fthg_sum_logic = #{idxFthgSumLogic},</if>
+            <if test="idxFthgFilterCond != null">idx_fthg_filter_cond = #{idxFthgFilterCond},</if>
+            <if test="busiDept != null">busi_dept = #{busiDept},</if>
+            <if test="busiConter != null">busi_conter = #{busiConter},</if>
+            <if test="dvlpDept != null">dvlp_dept = #{dvlpDept},</if>
+            <if test="techConter != null">tech_conter = #{techConter},</if>
+            <if test="crspIdxDataStd != null">crsp_idx_data_std = #{crspIdxDataStd},</if>
+            <if test="idxDataStdNo != null">idx_data_std_no = #{idxDataStdNo},</if>
+            <if test="idxDataIdxName != null">idx_data_idx_name = #{idxDataIdxName},</if>
+            <if test="idxDataStdStatisRule != null">idx_data_std_statis_rule = #{idxDataStdStatisRule},</if>
+            <if test="idxDataStdRelateDms != null">idx_data_std_relate_dms = #{idxDataStdRelateDms},</if>
+            <if test="verNo != null">ver_no = #{verNo},</if>
+            <if test="combNo != null">comb_no = #{combNo},</if>
+            <if test="combDesc != null">comb_desc = #{combDesc},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modTime != null">mod_time = #{modTime},</if>
+        </trim>
+        where idx_no = #{idxNo}
+    </update>
+
+    <delete id="deleteTStdIdxByIdxNo" parameterType="String">
+        delete from t_std_idx where idx_no = #{idxNo}
+    </delete>
+
+    <delete id="deleteTStdIdxByIdxNos" parameterType="String">
+        delete from t_std_idx where idx_no in 
+        <foreach item="idxNo" collection="array" open="(" separator="," close=")">
+            #{idxNo}
+        </foreach>
+    </delete>
+
+</mapper>
